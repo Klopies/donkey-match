@@ -62,7 +62,7 @@ class Board {
     return Object
       .entries(this.numSounds)
       .map(([key, value]) =>
-        new Array(value).fill().map((_, index) => `${key}_${index+1}.ogg`)
+        new Array(value).fill().map((_, index) => `/${key}_${index+1}.ogg`)
       ).flat();
   }
 
