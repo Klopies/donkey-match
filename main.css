@@ -32,7 +32,6 @@ h1 {
 .tile {
   width: 100px;
   height: 100px;
-  background: #fb1;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -43,6 +42,30 @@ h1 {
   transition: all 0.3s;
   transform-style: preserve-3d;
   transform: rotateY(180deg);
+}
+
+.tile::after {
+  content: "";
+  transform: translateZ(1px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--tile-image);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.tile::before {
+  content: "";
+  transform: translateZ(-1px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fb1;
 }
 
 .tile.revealed {

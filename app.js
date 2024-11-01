@@ -1,3 +1,4 @@
+import { BASE_ASSET_URL } from "./src/constants.js";
 import { playSound, preloadSounds } from "./src/helpers/audio.js";
 
 const NUM_TILES = 16;
@@ -12,7 +13,6 @@ class Tile {
   }
   reveal() {
     this.revealed = !this.revealed;
-    this.element.textContent = this.revealed ? this.value : "";
     if (this.revealed) {
       this.element.classList.add("revealed");
     } else {
@@ -53,6 +53,10 @@ class Board {
     preloadSounds(this._getAllSounds());
   }
 
+  _createImageUrl(key) {
+    return `${BASE_ASSET_URL}/images/donkey_${key}.png`;
+  }
+
   _getAllSounds() {
     return Object
       .entries(this.numSounds)
@@ -63,8 +67,9 @@ class Board {
 
   createTiles() {
     for (let i = 0; i < NUM_TILES / 2; i++) {
-      this.tiles.push(new Tile(i, i));
-      this.tiles.push(new Tile(i + NUM_TILES / 2, i));
+      const imageUrl = this._createImageUrl(i + 1);
+      this.tiles.push(new Tile(i, imageUrl));
+      this.tiles.push(new Tile(i + NUM_TILES / 2, imageUrl));
     }
     this.shuffleTiles();
   }
@@ -142,6 +147,7 @@ class Board {
       tileElement.addEventListener("click", () => {
         this.onCardClick(tile);
       });
+      tileElement.style.setProperty("--tile-image", `url(${tile.value})`);
       this.boardElement.appendChild(tileElement);
     });
   }

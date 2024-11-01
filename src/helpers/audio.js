@@ -10,7 +10,7 @@ export const playSound = (sounds) => {
   if (sounds instanceof Array) {
     sound = sounds[Math.floor(Math.random() * sounds.length)];
   }
-  const audio = new Audio(BASE_AUDIO_URL + sound);
+  const audio = new Audio(BASE_AUDIO_URL + '/' + sound);
   audio.play();
 };
 
