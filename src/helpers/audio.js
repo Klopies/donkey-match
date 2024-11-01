@@ -1,4 +1,4 @@
-import { BASE_ASSET_URL } from "../constants";
+import { BASE_ASSET_URL } from "../constants.js";
 
 const BASE_AUDIO_URL = BASE_ASSET_URL + "/sounds";
 
