@@ -1,4 +1,6 @@
-const BASE_AUDIO_URL = "/public/sounds/";
+import { BASE_ASSET_URL } from "../constants";
+
+const BASE_AUDIO_URL = BASE_ASSET_URL + "/sounds";
 
 /**
  * @param {String | Array<String>} sounds
