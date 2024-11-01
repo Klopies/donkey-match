@@ -1,1 +1,1 @@
-export const BASE_ASSET_URL = "/donkey-match/public";
+export const BASE_ASSET_URL = "/public";

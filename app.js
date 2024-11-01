@@ -48,6 +48,7 @@ class Board {
     this.matchedTiles = 0;
     this.matchedToWin = NUM_TILES / 2;
     this.youWin = false;
+    this.youWinElement = document.getElementById("you-win");
     this.boardElement = document.getElementById("board");
 
     preloadSounds(this._getAllSounds());
@@ -114,8 +115,8 @@ class Board {
         if (this.matchedTiles === this.matchedToWin) {
           playSound(["win_1.ogg", "win_2.ogg", "win_3.ogg"]);
           this.youWin = true;
-          const youWinElement = document.getElementById("you-win");
-          youWinElement.classList.remove("hidden");
+        
+          this.youWinElement.classList.remove("hidden");
         } else {
           playSound(["correct_1.ogg", "correct_2.ogg"]);
         }
@@ -129,7 +130,7 @@ class Board {
           tile.reveal();
           this.lastRevealedTile = null;
           this.disabled = false;
-        }, 300);
+        }, 650);
       }
     }
   }
@@ -138,6 +139,8 @@ class Board {
     if (this.tiles.length === 0) {
       this.createTiles();
     }
+
+    this.boardElement.innerHTML = "";
 
     this.tiles.forEach((tile) => {
       const tileElement = document.createElement("div");
@@ -151,10 +154,30 @@ class Board {
       this.boardElement.appendChild(tileElement);
     });
   }
+
+  reset() {
+    this.tiles = [];
+    this.createTiles();
+    this.disabled = false;
+    this.lastRevealedTile = null;
+    this.youWin = false;
+    this.mistakes = 0;
+    this.matchedToWin = NUM_TILES / 2;
+    this.matchedTiles = 0;
+    this.youWinElement.classList.add("hidden");
+
+    this.draw();
+    this.drawMistakes();
+  }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   const board = new Board();
   board.draw();
   board.drawMistakes();
+
+  const restartButton = document.getElementById("restart");
+  restartButton.addEventListener("click", () => {
+    board.reset();
+  });
 });

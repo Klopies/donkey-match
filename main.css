@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
 }
 
 body {
@@ -32,7 +33,6 @@ h1 {
 .tile {
   width: 100px;
   height: 100px;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,33 +46,30 @@ h1 {
 
 .tile::after {
   content: "";
-  transform: translateZ(1px);
+  transform: translateZ(2px);
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 2px;
   background-image: var(--tile-image);
   background-size: cover;
   background-repeat: no-repeat;
+  border-radius: 10px;
+
 }
 
 .tile::before {
   content: "";
-  transform: translateZ(-1px);
+  transform: translateZ(1px);
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-color: #fb1;
+  border-radius: 10px;
 }
 
 .tile.revealed {
   transform: rotateY(0deg);
 }
 
-.tile.matched {
+.tile.matched::before {
   background: #14B82A;
 }
 
@@ -83,14 +80,31 @@ h1 {
 }
 
 .you-win {
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin-block: 2rem;
   color: #14B82A;
 }
-
+.you-win h2 {
+  margin-bottom: 1rem;
+}
 .you-win.hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+#restart {
+  border: none;
+  background: #14B82A;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+}
+
+#restart:hover {
+  background: #0e9b5e;
 }
