@@ -1,0 +1,73 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Comic Sans MS", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background: #f4f4f4;
+}
+h1 {
+  text-align: center;
+}
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.tile {
+  width: 100px;
+  height: 100px;
+  background: #fb1;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  font-size: 64px;
+  transition: all 0.3s;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
+}
+
+.tile.revealed {
+  transform: rotateY(0deg);
+}
+
+.tile.matched {
+  background: #14B82A;
+}
+
+.mistakes {
+  padding: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.you-win {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #14B82A;
+}
+
+.you-win.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
